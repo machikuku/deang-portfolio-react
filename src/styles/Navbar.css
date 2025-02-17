@@ -1,0 +1,49 @@
+/* Navbar styling */
+.navbar {
+    position: fixed; /* Keep it fixed at the top */
+    top: 1%;
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    width: auto; /* Allow the navbar to fit the content */
+    
+    padding: 10px 20px; /* Add some padding for better spacing */
+    border-radius: 5px; /* Rounded corners */
+   
+    z-index: 10; /* Ensure it's above other content */
+}
+
+/* Navbar list styling */
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Navbar list item styling */
+.navbar li {
+    display: inline-block; /* Change from inline to inline-block for better control */
+    margin: 0 15px; /* Increased spacing between items */
+}
+
+/* Navbar link styling */
+.navbar a, .navbar .active {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500; /* Slightly bolder text */
+    padding: 10px 15px; /* Add padding inside links */
+    border-radius: 3px; /* Rounded corners for links */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition on hover */
+}
+
+/* Navbar link hover effect */
+.navbar a:hover {
+    color: #00bcd4;
+    background-color: rgba(0, 188, 212, 0.2); /* Add a subtle background on hover */
+}
+
+/* Active navbar link */
+.navbar .active {
+    color: #00bcd4; /* Active link color */
+}

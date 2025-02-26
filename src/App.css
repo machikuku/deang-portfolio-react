@@ -33,18 +33,6 @@ section {
 }
 /* Optional: Add backgrounds for visibility */
 
-.about-section {
-  background-color: #2a2a2a;
-}
-
-.projects-section {
-  background-color: #222;
-}
-
-.contact-section {
-  background-color: #333;
-}
-
 .hero-content {
   z-index: 2; /* Above Squares */
   text-align: center;

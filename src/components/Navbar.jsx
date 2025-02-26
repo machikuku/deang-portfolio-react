@@ -1,26 +1,26 @@
+// Navbar.jsx (in src/components/)
 import React from "react";
-import { NavLink } from "react-router-dom";
-import '../styles/Navbar.css'; // Ensure the correct path to your CSS file
+import "../styles/Navbar.css"; // Adjust path if needed
 
-function Navbar() {
-    return (
-        <nav className="navbar"> {/* Add className="navbar" here */}
-            <ul>
-                <li>
-                    <NavLink to="/">Home</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/about">About</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/projects">Projects</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/contact">Contact</NavLink>
-                </li>
-            </ul>
-        </nav>
-    );
-}
+const Navbar = ({ isScrolled }) => {
+  return (
+    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+      <ul>
+        <li>
+          <a href="#hero">Home</a>
+        </li>
+        <li>
+          <a href="#about">About</a>
+        </li>
+        <li>
+          <a href="#projects">Projects</a>
+        </li>
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  );
+};
 
 export default Navbar;

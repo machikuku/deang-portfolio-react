@@ -1,0 +1,250 @@
+/* ../styles/About.css */
+.about-section {
+  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  scroll-snap-align: center;
+  background-color: #343541;
+  overflow-y: auto;
+}
+
+.about-content {
+  text-align: center;
+  max-width: 900px;
+  padding: 20px;
+}
+
+.about-content h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #00bcd4;
+  margin-bottom: 20px;
+}
+
+/* Introduction - Modern Style */
+.about-content .introduction {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #e0e0e0; /* Lighter text for contrast */
+  line-height: 1.6;
+  margin-bottom: 20px;
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px;
+  font-family: 'Roboto', Arial, sans-serif; /* Modern sans-serif font */
+  position: relative;
+  width: 900px; /* Full width for container */
+}
+
+/* Introduction Container (Flex for Image and Text) */
+.intro-container {
+  display: flex;
+  align-items: center; /* Vertically center image and text */
+  gap: 90px; /* Space between image and text */
+  justify-content: center; /* Center horizontally within introduction */
+}
+
+/* Introduction Image */
+.intro-image {
+  width: 30%; /* Adjust size as needed */
+  height: 5%; /* Adjust size as needed */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Ensure image fits */
+  border: 1px solid #1abc9c; /* Green border matching text */
+  opacity: 0.9; /* Slightly less transparency */
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.intro-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio */
+}
+
+/* Introduction Text */
+.intro-text {
+  flex: 1; /* Take remaining space */
+  text-align: left; /* Left-align text for readability */
+}
+
+/* Highlight Name */
+.highlight-name {
+  color: #1abc9c; /* Green accent */
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Enhanced shadow for depth */
+  background: rgba(26, 188, 156, 0.2); /* Subtle green background behind name */
+  padding: 2px 6px; /* Padding for background */
+  border-radius: 4px; /* Rounded corners for highlight */
+}
+
+/* Animations (Only fadeIn for image) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 0.9; transform: scale(1); }
+}
+
+
+
+/* Skills Box */
+.skills-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #1abc9c;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 70px;
+}
+
+.skills-box h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #1abc9c;
+  margin-bottom: 10px;
+}
+
+.skills-box p {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #bbb;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Tech Stack Grid */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+}
+
+.tech-item img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+  filter: brightness(0) invert(1);
+}
+
+.tech-item span {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+/* Current Work Highlight */
+.work-highlight {
+  margin-bottom: 20px;
+}
+
+.work-highlight h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #1abc9c;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.work-highlight h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(to right, #1abc9c, #00bcd4);
+}
+
+.work-highlight p {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #bbb;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Goals Card */
+.goals-card {
+  background: #333;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.goals-card h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #1abc9c;
+  margin-bottom: 10px;
+}
+
+.goals-card p {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #bbb;
+  line-height: 1.6;
+}
+
+/* Personal Bubble */
+.personal-bubble {
+  background: #444;
+  border-radius: 20px 20px 20px 0;
+  padding: 15px;
+  transform: rotate(-2deg);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.personal-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #444;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.personal-bubble h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #1abc9c;
+  margin-bottom: 10px;
+}
+
+.personal-bubble p {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #bbb;
+  line-height: 1.6;
+}
+
+/* CTA Button */
+.cta-button {
+  margin-bottom: 20px;
+}
+
+.cta-button p {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: #bbb;
+  line-height: 1.6;
+}
+
+.cta-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #1abc9c;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button a:hover {
+  background: #00bcd4;
+  transform: scale(1.05);
+}
+
+/* Shared Styles */
+.about-content strong {
+  color: #00bcd4;
+}

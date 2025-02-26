@@ -1,5 +1,5 @@
 import React from "react";
-import '../styles/About.css';
+import '../styles/about.css';
 
 const techStack = [
   { name: "JavaScript", logo: "https://cdn.jsdelivr.net/npm/devicons@1.8.0/!SVG/javascript.svg" },

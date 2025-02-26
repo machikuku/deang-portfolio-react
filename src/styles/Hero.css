@@ -1,313 +1,52 @@
-/* Reset margin and padding for all elements */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&family=Rajdhani:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
 
-/* Full height of the page */
-html, body {
-  height: 100%;
-  width: 100%;
-  font-family: 'Arial', sans-serif;
-  background-color: #1a1a1a; /* Dark background */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  color: #e4e4e4; /* Light text color */
-}
-
-/* Hero container with background animation */
-.hero-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.hero-section {
   height: 100vh; /* Full viewport height */
   width: 100%;
-  animation: fadeIn 2s ease-out;
-  padding: 50px;
-  position: relative; /* To contain the background overlay */
-  z-index: 1;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  position: relative; /* For layering Squares */
+  overflow: hidden; /* Prevent overflow */
+  background: linear-gradient(45deg, #0a0f1a, #121826, #0e3a3a, #092726);
 }
 
-/* Create background animation with gradient */
-.hero-container::before {
-  content: ''; /* Create a pseudo-element */
+.hero-content {
+  z-index: 2; /* Above Squares */
+  text-align: center; /* Center text */
+}
+
+.hero-content h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 5rem;
+  font-weight: bold;
+  color: #ecf0f1; /* Light text */
+  text-shadow: 0 0 10px rgba(236, 240, 241, 0.8), 0 0 20px rgba(0, 0, 0, 0.5); /* Glowing shadow effect */
+  background: linear-gradient(45deg, #ecf0f1, #a2d5f2); /* Light gradient for highlight */
+  -webkit-background-clip: text; /* Clip background to text */
+  background-clip: text; /* Standard property for modern browsers */
+  
+}
+
+.hero-content p {
+  font-size: clamp(1.2rem, 2vw, 2rem); /* Responsive font size */
+  color: #bdc3c7; /* Slightly muted text */
+  text-shadow: 0 0 8px rgba(189, 195, 199, 0.7), 0 0 15px rgba(189, 195, 199, 0.4); /* Softer glowing shadow */
+  /* Optional: Gradient highlight for p */
+  background: linear-gradient(45deg, #bdc3c7, #8aa1a1); /* Muted gradient for highlight */
+  -webkit-background-clip: text; /* Clip background to text */
+  background-clip: text; /* Standard property */
+  color: transparent; /* Make text transparent to show gradient */
+}
+
+/* Squares Background */
+.squares-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #2c3e50, #34495e, #1abc9c, #16a085); /* Darker and cooler gradient */
-  background-size: 400% 400%; /* Make gradient large for smooth movement */
-  animation: gradientBackground 12s ease infinite, parallaxBackground 20s linear infinite;
-  z-index: -1; /* Send it behind the content */
-}
-
-/* Parallax background animation */
-@keyframes parallaxBackground {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Gradient background animation */
-@keyframes gradientBackground {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Hero Title */
-.hero-title {
-  font-size: 5rem;
-  font-weight: bold;
-  color: #ecf0f1; /* Light, neutral color for the title */
-  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-}
-
-.hero-description {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #bdc3c7; /* Light gray for text */
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-  overflow: hidden; /* Ensures text disappears after typing */
-  white-space: nowrap; /* Keeps everything in one line */
-  width: 0; /* Initially width is 0 */
-  animation: typing 40s steps(80) infinite, blink 2s step-end infinite, delete 10s steps(80) infinite;
-}
-
-/* Typing animation */
-@keyframes typing {
-  0%, 100% {
-    width: 0;
-  }
-  25% {
-    width: 100%;
-  }
-  50% {
-    width: 0;
-  }
-  75% {
-    width: 100%;
-  }
-}
-
-/* Blinking cursor */
-@keyframes blink {
-  50% {
-    border-color: transparent;
-  }
-}
-
-/* Delete effect */
-@keyframes delete {
-  0%, 50% {
-    width: 100%;
-  }
-  25%, 75% {
-    width: 0;
-  }
-}
-
-/* Call-to-action button */
-.cta-button {
-  background-color: #1abc9c; /* Modern teal color */
-  padding: 12px 25px;
-  font-size: 1.25rem;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-/* 3D hover effect on button */
-.cta-button:hover {
-  background-color: #16a085; /* Darker teal */
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-}
-
-/* Hero Footer */
-.hero-footer {
-  margin-top: 40px;
-  text-align: center;
-  color: #bbb;
-}
-
-.hero-footer h3 {
-  font-size: 2rem;
-  color: #00bcd4;
-}
-
-.hero-footer p {
-  font-size: 1rem;
-  color: #ccc;
-}
-
-/* About Section */
-.about-section {
-  padding: 50px;
-  background-color: #333; /* Dark background for the section */
-  color: #e4e4e4;
-  width: 100%;
-  text-align: center;
-}
-
-.about-section h2 {
-  font-size: 2.5rem;
-  color: #00bcd4;
-  margin-bottom: 20px;
-}
-
-.about-section p {
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: #bbb;
-}
-
-.about-section ul {
-  list-style: none;
-  padding: 0;
-  font-size: 1.1rem;
-}
-
-.about-section li {
-  color: #00bcd4;
-  margin-bottom: 10px;
-}
-
-/* Projects Section */
-.projects-section {
-  padding: 50px;
-  background-color: #222; /* Darker section background */
-  color: #fff;
-  width: 100%;
-  text-align: center;
-}
-
-.projects-section h2 {
-  font-size: 2.5rem;
-  color: #00bcd4;
-  margin-bottom: 20px;
-}
-
-.project-cards {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.project-card {
-  background-color: #444;
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 280px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-}
-
-.project-card h3 {
-  font-size: 1.5rem;
-  color: #00bcd4;
-}
-
-.project-card p {
-  font-size: 1rem;
-  color: #bbb;
-}
-
-.project-card a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #00bcd4;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.project-card a:hover {
-  text-decoration: underline;
-}
-
-/* Contact Section */
-.contact-section {
-  padding: 50px;
-  background-color: #333;
-  color: #fff;
-  width: 100%;
-  text-align: center;
-}
-
-.contact-section h2 {
-  font-size: 2.5rem;
-  color: #00bcd4;
-  margin-bottom: 20px;
-}
-
-.contact-section p {
-  font-size: 1.25rem;
-  color: #bbb;
-  margin-bottom: 20px;
-}
-
-.contact-section ul {
-  list-style: none;
-  padding: 0;
-  font-size: 1.1rem;
-}
-
-.contact-section li {
-  color: #00bcd4;
-  margin-bottom: 10px;
-}
-
-/* Keyframe Animations */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes zoomIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  z-index: 1; /* Behind content */
+  opacity: 0.4; /* Transparent as requested */
 }

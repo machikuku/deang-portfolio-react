@@ -1,11 +1,17 @@
-import React from 'react';
-import '../styles/coming_soon.css'; // Ensure the correct path to your CSS file
+// Projects.jsx (place in src/components/)
+import React from "react";
+import '../styles/projects.css';
+import { FaCode } from 'react-icons/fa'; // Single icon for "On Going Development"
 
-const Hero = () => {
+const Projects = () => {
   return (
-    <div className="coming-soon-container">
-      <h1 className="coming-soon-message">Coming Soon</h1>
-    </div>
+    <section className="projects-section" id="projects">
+      <div className="projects-content">
+        <h1 className="projects-title">
+          <FaCode />Project Section Is On Going Development
+        </h1>
+      </div>
+    </section>
   );
 };
 

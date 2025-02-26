@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+.text-rotate {
+  display: flex;
+  flex-wrap: wrap;
+  white-space: pre-wrap;
+  position: relative;
+  font-size: clamp(1.5rem, 4vw, 3rem); /* Responsive font size */
+  
+  font-weight: bold;
+  color: white; /* Adjust text color if needed */
+}
+
+.rotating-text {
+  font-family: VT323; 
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+  
+  .text-rotate-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .text-rotate-word {
+    display: inline-flex;
+    font-size: inherit; /* Inherit size from .text-rotate */
+  }
+  
+  .text-rotate-lines {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .text-rotate-element {
+    display: inline-block;
+    font-size: inherit;
+  }
+  
+  .text-rotate-space {
+    white-space: pre;
+  }

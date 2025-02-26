@@ -1,11 +1,16 @@
-import React from 'react';
-import '../styles/coming_soon.css'; // Ensure the correct path to your CSS file
+import React from "react";
+import '../styles/contact.css';
+import { FaCode } from 'react-icons/fa'; 
 
-const Hero = () => {
+const Contact = () => {
   return (
-    <div className="coming-soon-container">
-      <h1 className="coming-soon-message">Coming Soon</h1>
-    </div>
+    <section className="contact-section" id="contact">
+      <div className="contact-content">
+        <h1 className="contact-title">
+          <FaCode />Contact Section Is On Going Development
+        </h1>
+      </div>
+    </section>
   );
 };
 

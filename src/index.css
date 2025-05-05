@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+/* Hide scrollbar but allow scrolling */
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Animation for the stars/dots in hero section */
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.5);
+  }
+}
+
+@font-face {
+  font-family: "Azonix";
+  src: url("/fonts/Azonix.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-azonix {
+  font-family: "Azonix", sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* Section transition animations */
+.section-enter {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.section-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+.section-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-exit-active {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+/* Highlight effect for name */
+.highlight-text {
+  position: relative;
+  display: inline-block;
+}
+
+.highlight-text::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #14b8a6;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.5s ease-out;
+}
+
+.highlight-text:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Section title styles */
+.section-title {
+  font-family: "Azonix", sans-serif;
+  letter-spacing: 0.05em;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #14b8a6;
+}
+
+/* Tech stack scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50%));
+  }
+}
+
+.tech-stack-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0;
+}
+
+.tech-stack-container::before,
+.tech-stack-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 5rem;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tech-stack-container::before {
+  left: 0;
+  background: linear-gradient(to right, #121416, transparent);
+}
+
+.tech-stack-container::after {
+  right: 0;
+  background: linear-gradient(to left, #121416, transparent);
+}
+
+.tech-stack-scroll {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  width: max-content;
+  gap: 2rem;
+}
+
+.tech-stack-scroll:hover {
+  animation-play-state: paused;
+}
+
+.tech-stack-item {
+  flex: 0 0 auto;
+}
+
+/* Section transition effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.section-transition-up {
+  background: linear-gradient(to top, rgba(20, 184, 166, 0.2), transparent);
+  animation: slideUp 0.6s ease-in-out forwards;
+}
+
+.section-transition-down {
+  background: linear-gradient(to bottom, rgba(20, 184, 166, 0.2), transparent);
+  animation: slideDown 0.6s ease-in-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Add smooth reveal animations for section content */
+.reveal-content {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.reveal-content-delayed {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+}

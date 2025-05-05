@@ -3,6 +3,7 @@
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Calendar, ArrowRight, FileText, Briefcase, Github } from "lucide-react"
+import BackgroundEffect from "./BackgroundEffect"
 
 const Projects = () => {
   const [activeTab, setActiveTab] = useState("projects")
@@ -15,17 +16,33 @@ const Projects = () => {
         "A fully functional scientific calculator built with JavaScript, capable of performing complex mathematical operations.",
       imageUrl: "/images/calcu.png",
       link: "https://scientificcalalculator.netlify.app/",
-      githubLink: "https://github.com/machikuku/Scientific_Calculator.git", // Add GitHub repo link
+      githubLink: "https://github.com/machikuku/Scientific_Calculator.git",
       technologies: ["React"],
     },
     {
       title: "Pokimane API Battle",
       description:
         "A fun web app that uses the Pokimane API to fetch data about Pokimane's live streams and viewer interactions, allowing users to battle each other using Pokimane's data.",
-      imageUrl: "/images/pokemon.png",
-      link: "https://example.com/project-2",
-      githubLink: "https://github.com/machikuku/pokemon-api-battle.git", // Add GitHub repo link
+      imageUrl: "/images/pokemon.jpg",
+      githubLink: "https://github.com/machikuku/FinalSE.git",
       technologies: ["React", "Node.js", "API Integration"],
+    },
+    {
+      title: "CCS-IT PORTAL",
+      description:
+        "A comprehensive design system created for portfolio websites, featuring reusable components, color schemes, and typography guidelines.",
+      imageUrl: "/images/se.png?key=4ro4f",
+      // No live link for this project
+      githubLink: "https://github.com/machikuku/pokemon-api-battle.git",
+      technologies: ["PHP", "CSS", "HTML", "JAVASCRIPT"],
+    },
+    {
+      title: "Better Bites",
+      description:
+        "Better Bites, a Flutter app, uses AI to scan and analyze packaged food ingredients, offering personalized health insights. Backed by reliable sources, it educates users on ingredient impacts, empowering informed dietary choices.",
+      imageUrl: "/images/betterbites.jpg?key=hkx90",
+      githubLink: "hhttps://github.com/machikuku/Better_Bites.git",
+      technologies: ["Flutter", "Dart", "Python", "Flask", "AI", "SQLITE"],
     },
   ])
 
@@ -62,6 +79,9 @@ const Projects = () => {
 
   return (
     <div ref={sectionRef} className="min-h-screen bg-[#121416] py-32 px-4 sm:px-6 relative overflow-hidden">
+      {/* Enhanced Background */}
+      <BackgroundEffect variant="grid" intensity="medium" />
+
       {/* Background elements */}
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-teal-500/5 blur-3xl rounded-full" />
 
@@ -119,7 +139,7 @@ const Projects = () => {
                   of our OJT requirement.
                 </p>
                 <motion.a
-                  href="https://example.com/blog-article" // Replace with your actual blog article link
+                  href="https://mjdblog.netlify.app/#hero" // Replace with your actual blog article link
                   className="inline-flex items-center text-teal-400 hover:text-teal-300 transition-colors text-sm font-medium group"
                   whileHover={{ x: 5 }}
                 >
@@ -158,7 +178,10 @@ const Projects = () => {
                     <img
                       src={
                         project.imageUrl ||
-                        "/placeholder.svg?height=192&width=384&query=" + encodeURIComponent(project.title)
+                        "/placeholder.svg?height=192&width=384&query=" + encodeURIComponent(project.title) ||
+                        "/placeholder.svg" ||
+                        "/placeholder.svg" ||
+                        "/placeholder.svg"
                       }
                       alt={project.title}
                       className="object-cover w-full h-full transition-transform duration-700 hover:scale-110"
@@ -193,27 +216,33 @@ const Projects = () => {
                     <p className="text-gray-400 line-clamp-4">{project.description}</p>
                   </div>
                   <div className="flex justify-between items-center">
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-teal-400 hover:text-teal-300 transition-colors text-sm font-medium group flex items-center"
-                      whileHover={{ x: 3 }}
-                    >
-                      <span>View Project</span>
-                      <ArrowRight size={14} className="ml-1 transition-transform group-hover:translate-x-1" />
-                    </motion.a>
+                    {project.link ? (
+                      <motion.a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-teal-400 hover:text-teal-300 transition-colors text-sm font-medium group flex items-center"
+                        whileHover={{ x: 3 }}
+                      >
+                        <span>View Project</span>
+                        <ArrowRight size={14} className="ml-1 transition-transform group-hover:translate-x-1" />
+                      </motion.a>
+                    ) : (
+                      <div></div> // Empty div to maintain spacing when no link is present
+                    )}
 
-                    <motion.a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-white transition-colors text-sm font-medium flex items-center"
-                      whileHover={{ x: 3 }}
-                    >
-                      <Github size={14} className="mr-1" />
-                      <span>GitHub</span>
-                    </motion.a>
+                    {project.githubLink ? (
+                      <motion.a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-white transition-colors text-sm font-medium flex items-center"
+                        whileHover={{ x: 3 }}
+                      >
+                        <Github size={14} className="mr-1" />
+                        <span>GitHub</span>
+                      </motion.a>
+                    ) : null}
                   </div>
                 </div>
               </motion.div>

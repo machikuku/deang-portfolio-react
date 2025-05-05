@@ -1,9 +1,24 @@
 "use client"
 
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
-import { User, ClipboardCheck, Search, Palette, Monitor, ImageIcon, Video, Layout, Database } from "lucide-react"
+import {
+  User,
+  ClipboardCheck,
+  Search,
+  Palette,
+  Monitor,
+  ImageIcon,
+  Video,
+  Layout,
+  Database,
+  Briefcase,
+  Target,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react"
 import TechStackItem from "./TechStackItem"
+import BackgroundEffect from "./BackgroundEffect"
 
 // Import tech logos
 import ReactLogo from "./tech-logos/ReactLogo"
@@ -22,6 +37,13 @@ const About = () => {
   const introRef = useRef(null)
   const skillsRef = useRef(null)
   const experienceRef = useRef(null)
+  const sectionRef = useRef(null)
+  const experienceScrollRef = useRef(null)
+
+  // State for experience scrolling
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   // Check if sections are in view
   const introInView = useInView(introRef, { once: true, amount: 0.3 })
@@ -32,6 +54,59 @@ const About = () => {
   const introControls = useAnimation()
   const skillsControls = useAnimation()
   const experienceControls = useAnimation()
+
+  // Experience data
+  const experiences = [
+    {
+      title: "Frontend Developer & System Analyst",
+      company: "AEONFLUX",
+      period: "2022 - Present",
+      type: "Full-time",
+      description:
+        "Developed and maintained responsive web pages that caters the need of the IT Students and Alumnus of WMSU - CCS.",
+    },
+    {
+      title: "Backend Developer",
+      company: "AEONFLUX",
+      period: "2024 - Present",
+      type: "Full-time",
+      description:
+        "Created a AI to scan and analyze packaged food ingredients, offering personalized health insights. Backed by reliable sources, it educates users on ingredient impacts, empowering informed dietary choices. ",
+    },
+  ]
+
+  // Check scroll capability
+  const checkScrollability = () => {
+    if (experienceScrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = experienceScrollRef.current
+      setCanScrollLeft(scrollLeft > 0)
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10) // 10px buffer
+    }
+  }
+
+  // Scroll functions
+  const scrollLeft = () => {
+    if (experienceScrollRef.current) {
+      experienceScrollRef.current.scrollBy({ left: -300, behavior: "smooth" })
+    }
+  }
+
+  const scrollRight = () => {
+    if (experienceScrollRef.current) {
+      experienceScrollRef.current.scrollBy({ left: 300, behavior: "smooth" })
+    }
+  }
+
+  // Check screen size for mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   // Trigger animations when sections come into view
   useEffect(() => {
@@ -45,6 +120,21 @@ const About = () => {
       experienceControls.start("visible")
     }
   }, [introInView, skillsInView, experienceInView, introControls, skillsControls, experienceControls])
+
+  // Set up scroll event listeners for experience section
+  useEffect(() => {
+    const scrollContainer = experienceScrollRef.current
+    if (scrollContainer) {
+      checkScrollability()
+      scrollContainer.addEventListener("scroll", checkScrollability)
+      window.addEventListener("resize", checkScrollability)
+
+      return () => {
+        scrollContainer.removeEventListener("scroll", checkScrollability)
+        window.removeEventListener("resize", checkScrollability)
+      }
+    }
+  }, [])
 
   // Tech stack with actual logos
   const techStack = [
@@ -74,7 +164,14 @@ const About = () => {
     },
     {
       category: "Media & Design",
-      skills: ["Adobe Photoshop", "Adobe Illustrator", "Adobe After Effects", "Canva" , "Adobe Premiere Pro", "Cupcut Pro"],
+      skills: [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "Adobe After Effects",
+        "Canva",
+        "Adobe Premiere Pro",
+        "Cupcut Pro",
+      ],
       icon: <ImageIcon size={16} className="text-teal-400" />,
     },
     {
@@ -162,8 +259,13 @@ const About = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#121416] pt-28 pb-20 px-4 sm:px-6 relative overflow-hidden">
+    <div ref={sectionRef} className="min-h-screen bg-[#121416] pt-28 pb-20 px-4 sm:px-6 relative overflow-hidden">
+      {/* Enhanced Background */}
+      <BackgroundEffect variant="blobs" intensity="low" />
+
       {/* Background elements */}
+      <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-teal-500/5 blur-3xl rounded-full" />
+      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-teal-500/5 blur-3xl rounded-full" />
 
       <div className="container mx-auto max-w-5xl relative z-10">
         {/* Section Header */}
@@ -261,6 +363,103 @@ const About = () => {
           </div>
         </motion.div>
 
+        {/* Experience Section - Now Scrollable */}
+        <motion.div
+          ref={experienceRef}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+          className="mb-20"
+        >
+          <motion.div variants={itemVariants} className="mb-8 flex justify-between items-center">
+            <div className="inline-flex items-center gap-2 bg-[#16181c] border border-teal-500/20 rounded-full px-4 py-1.5">
+              <Briefcase size={16} className="text-teal-400" />
+              <span className="text-sm font-medium text-teal-400">Experience</span>
+            </div>
+
+            {/* Scroll Controls - Only show on desktop and if there are more than 2 experiences */}
+            {!isMobile && experiences.length > 2 && (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={scrollLeft}
+                  disabled={!canScrollLeft}
+                  className={`p-2 rounded-full bg-[#16181c] border border-teal-500/20 text-teal-400 hover:bg-teal-500/10 transition-colors ${
+                    !canScrollLeft ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  onClick={scrollRight}
+                  disabled={!canScrollRight}
+                  className={`p-2 rounded-full bg-[#16181c] border border-teal-500/20 text-teal-400 hover:bg-teal-500/10 transition-colors ${
+                    !canScrollRight ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            )}
+          </motion.div>
+
+          {/* Scrollable Experience Container */}
+          <div
+            ref={experienceScrollRef}
+            className={`
+              ${experiences.length > 2 ? "overflow-x-auto" : ""}
+              scrollbar-thin scrollbar-thumb-teal-500/20 scrollbar-track-transparent
+              pb-4 -mx-2 px-2
+            `}
+            style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(20, 184, 166, 0.2) transparent" }}
+          >
+            <div
+              className={`
+              ${experiences.length > 2 ? "flex flex-nowrap gap-6" : "space-y-8"}
+              ${isMobile ? "flex-col" : ""}
+            `}
+            >
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={index}
+                  variants={itemVariants}
+                  className={`
+                    bg-[#16181c]/50 backdrop-blur-sm border border-teal-500/20 rounded-lg p-6 
+                    hover:border-teal-500/40 transition-colors
+                    ${experiences.length > 2 && !isMobile ? "flex-shrink-0 w-[calc(100%-1.5rem)]" : ""}
+                    ${experiences.length > 2 && !isMobile ? "sm:w-[calc(50%-1rem)]" : ""}
+                    ${experiences.length > 2 && !isMobile ? "lg:w-[calc(33.333%-1rem)]" : ""}
+                    ${isMobile ? "mb-6" : ""}
+                  `}
+                >
+                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                    <h4 className="text-xl font-semibold text-white">{exp.title}</h4>
+                    <div className="flex items-center gap-2 mt-2 md:mt-0">
+                      <span className="text-teal-400 text-sm">{exp.period}</span>
+                      <span className="px-2 py-1 bg-teal-500/10 border border-teal-500/20 text-teal-400 rounded-full text-xs">
+                        {exp.type}
+                      </span>
+                    </div>
+                  </div>
+                  <h5 className="text-gray-300 mb-3">{exp.company}</h5>
+                  <p className="text-gray-400">{exp.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Scroll Indicators - Mobile Only */}
+          {isMobile && experiences.length > 2 && (
+            <div className="flex justify-center mt-4 gap-2">
+              {experiences.map((_, index) => (
+                <div key={index} className={`w-2 h-2 rounded-full ${index === 0 ? "bg-teal-400" : "bg-gray-600"}`} />
+              ))}
+            </div>
+          )}
+        </motion.div>
+
         {/* Tech Stack Section */}
         <motion.div
           initial="hidden"
@@ -328,6 +527,54 @@ const About = () => {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Career Goals Section */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerVariants}
+          className="mb-10"
+        >
+          <motion.div variants={itemVariants} className="mb-8">
+            <div className="inline-flex items-center gap-2 bg-[#16181c] border border-teal-500/20 rounded-full px-4 py-1.5">
+              <Target size={16} className="text-teal-400" />
+              <span className="text-sm font-medium text-teal-400">Career Goals</span>
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="bg-[#16181c]/50 backdrop-blur-sm border border-teal-500/20 rounded-lg p-6 hover:border-teal-500/40 transition-colors"
+          >
+            <h4 className="text-xl font-semibold text-white mb-4">My Professional Aspirations</h4>
+            <div className="space-y-4">
+              <p className="text-gray-300 leading-relaxed">
+              My goal is to enhance my ability in web design and development, continuously improving my programming skills while sharpening my creative and design capabilities. I aspire to become a full-stack developer capable of creating innovative and useful systems and technologies that can make a real impact. Along the way, I want to motivate and inspire the younger generation, helping them see the potential of technology in transforming ideas into reality.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+              In the coming years, I envision myself not only as a skilled developer but also as a mentor, guiding others to reach their full potential. I am passionate about using my expertise to develop systems that can solve real-world problems while pushing the boundaries of design and technology. My mission is to leave a lasting, positive influence on those I work with and inspire future innovators.
+              </p>
+              <div className="pt-4 flex flex-wrap gap-3">
+                {[
+                  "Team Leadership",
+                  "Full-Stack Mastery",
+                  "AI Integration",
+                  "Open Source Contribution",
+                  "Technical Writing",
+                  "Mentorship",
+                ].map((goal, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 bg-teal-500/10 border border-teal-500/20 text-teal-400 rounded-full text-sm"
+                  >
+                    {goal}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </div>

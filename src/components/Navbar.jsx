@@ -3,36 +3,16 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Home, User, Briefcase, Mail } from "lucide-react"
+import { Home, User, Briefcase, Mail, Award } from "lucide-react"
 
-const Navbar = () => {
+const Navbar = ({ isScrolled }) => {
   const [activeSection, setActiveSection] = useState("hero")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
 
   // Handle scroll to update active section and navbar style
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      const aboutSection = document.getElementById("about")
-      const heroSection = document.getElementById("hero")
-
-      if (aboutSection && heroSection) {
-        // Create a transition zone that starts earlier
-        const heroHeight = heroSection.offsetHeight
-        const transitionStartPoint = heroHeight * 0.6 // Start transition at 60% of hero height
-        const transitionEndPoint = heroHeight * 0.8 // Complete transition at 80% of hero height
-
-        // Calculate transition progress (0 to 1)
-        const transitionProgress = Math.max(
-          0,
-          Math.min(1, (scrollPosition - transitionStartPoint) / (transitionEndPoint - transitionStartPoint)),
-        )
-
-        // Set scrolled state based on progress instead of threshold
-        setIsScrolled(transitionProgress > 0)
-      }
-
       const sections = ["hero", "about", "projects", "contact"]
 
       // Find which section is currently in view
@@ -58,6 +38,7 @@ const Navbar = () => {
     { section: "hero", icon: <Home size={20} />, label: "Home" },
     { section: "about", icon: <User size={20} />, label: "About" },
     { section: "projects", icon: <Briefcase size={20} />, label: "Outputs" },
+    { section: "certificates", icon: <Award size={20} />, label: "Certificates" },
     { section: "contact", icon: <Mail size={20} />, label: "Contact" },
   ]
 

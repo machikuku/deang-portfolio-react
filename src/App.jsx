@@ -1,12 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar";
 import Hero from "./components/Hero"
 import About from "./components/About"
 import Projects from "./components/Projects"
 import Contact from "./components/Contact"
-import "./index.css"
+import Certificates from "./components/Certificates"
 
 const Sections = () => {
   const [activeSection, setActiveSection] = useState("hero")
@@ -14,7 +14,7 @@ const Sections = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      const sections = ["hero", "about", "projects", "contact"]
+      const sections = ["hero", "about", "projects", "certificates", "contact"]
 
       // Find which section is currently in view
       for (const section of sections) {
@@ -71,6 +71,9 @@ const App = () => {
       </section>
       <section id="projects">
         <Projects />
+      </section>
+      <section id="certificates">
+        <Certificates />
       </section>
       <section id="contact">
         <Contact />

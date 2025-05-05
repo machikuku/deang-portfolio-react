@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, Github, Linkedin, MessageCircle, Copy, Check, ExternalLink } from "lucide-react"
+import BackgroundEffect from "./BackgroundEffect"
 
 const Contact = () => {
   // State for copy functionality
@@ -32,6 +33,9 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-[#121416] py-32 px-4 sm:px-6 relative overflow-hidden">
+      {/* Enhanced Background */}
+      <BackgroundEffect variant="blobs" intensity="low" />
+
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-teal-500/5 blur-3xl rounded-full" />
       <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-teal-500/5 blur-3xl rounded-full" />
@@ -55,8 +59,8 @@ const Contact = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-white text-center lg:text-left">Let's Connect</h2>
 
             <p className="text-gray-400 text-lg text-center lg:text-left">
-             I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision. Feel free to reach out through any of the platforms below.
+              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              Feel free to reach out through any of the platforms below.
             </p>
           </motion.div>
 
@@ -264,14 +268,10 @@ const Contact = () => {
             Thank you for taking the time to explore my work. I'm passionate about creating exceptional digital
             experiences and would love the opportunity to collaborate on your next project.
           </p>
-          <motion.div
-            className="mt-6"
-          >
+          <motion.div className="mt-6">
             <span className="text-white text-lg">
               Let's build something amazing{" "}
-              <span className="font-azonix text-teal-400 tracking-wider inline-block ">
-                TOGETHER
-              </span>
+              <span className="font-azonix text-teal-400 tracking-wider inline-block">TOGETHER</span>
             </span>
           </motion.div>
         </motion.div>

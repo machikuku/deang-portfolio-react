@@ -163,8 +163,8 @@ const Hero = () => {
         canvas.height / 2,
         canvas.width * 0.8,
       )
-      bgGradient.addColorStop(0, "rgba(15, 23, 42, 1)") // Dark blue
-      bgGradient.addColorStop(1, "rgba(10, 15, 30, 1)") // Darker blue
+      bgGradient.addColorStop(0, "rgba(10, 15, 25, 1)") // Darker blue
+      bgGradient.addColorStop(1, "rgba(5, 10, 20, 1)") // Even darker blue
 
       ctx.fillStyle = bgGradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -285,11 +285,8 @@ const Hero = () => {
         {/* Background Canvas Animation */}
         <canvas ref={canvasRef} className="fixed inset-0 w-full h-full" />
 
-        {/* Hero Content */}
-        <div
-          ref={containerRef}
-          className="sticky top-0 flex items-center justify-center min-h-screen w-full z-10 pt-16 sm:pt-20 md:pt-24"
-        >
+        {/* Hero Content - Improved vertical centering */}
+        <div ref={containerRef} className="absolute inset-0 flex items-center justify-center w-full z-10">
           <div className="container mx-auto px-4 sm:px-6 z-10 relative">
             <motion.div
               className="flex flex-col items-center justify-center text-center"
@@ -316,10 +313,10 @@ const Hero = () => {
               </motion.div>
 
               {/* Spacer div - responsive height */}
-              <div className="h-4 sm:h-6 md:h-[5vh]"></div>
+              <div className="h-6 sm:h-8 md:h-10"></div>
 
               {/* Rotating Text for Role - With responsive sizing */}
-              <motion.div className="mb-4 sm:mb-6 w-full" variants={itemVariants}>
+              <motion.div className="mb-6 sm:mb-8 md:mb-10 w-full" variants={itemVariants}>
                 <div className="flex justify-center items-center">
                   {/* Dynamic width background container */}
                   <div
@@ -327,9 +324,6 @@ const Hero = () => {
                     style={{ minWidth: "240px", maxWidth: "90%" }}
                   >
                     <div className="relative">
-                      {/* Decorative elements */}
-                      <div className="absolute -top-1 -left-1 w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-teal-400/40"></div>
-                      <div className="absolute -bottom-1 -right-1 w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-teal-400/40"></div>
 
                       <RotatingText
                         texts={rotatingTexts}
@@ -351,7 +345,7 @@ const Hero = () => {
               {/* Short description - responsive text and width */}
               <motion.div
                 variants={itemVariants}
-                className="w-full max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl mx-auto px-2"
+                className="w-full max-w-2xl sm:max-w-3xl md:max-w-4xl mx-auto px-4 sm:px-6"
               >
                 <p className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
                   Creating exceptional digital experiences through clean code and intuitive design. I specialize in

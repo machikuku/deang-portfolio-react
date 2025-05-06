@@ -3,7 +3,7 @@
 import { useState, useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Calendar, ArrowRight, FileText, Briefcase, Github } from "lucide-react"
-import BackgroundEffect from "./BackgroundEffect"
+// Removed BackgroundEffect import
 
 const Projects = () => {
   const [activeTab, setActiveTab] = useState("projects")
@@ -11,38 +11,56 @@ const Projects = () => {
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 })
   const [projectData, setProjectData] = useState([
     {
-      title: "Scientific-Calculator",
+      title: "SCIENTIFIC CALCULATOR",
       description:
         "A fully functional scientific calculator built with JavaScript, capable of performing complex mathematical operations.",
       imageUrl: "/images/calcu.png",
       link: "https://scientificcalalculator.netlify.app/",
       githubLink: "https://github.com/machikuku/Scientific_Calculator.git",
-      technologies: ["React"],
+      technologies: ["React", "JavaScript", "CSS"],
     },
     {
-      title: "Pokimane API Battle",
+      title: "POKEMON API BATTLE",
       description:
-        "A fun web app that uses the Pokimane API to fetch data about Pokimane's live streams and viewer interactions, allowing users to battle each other using Pokimane's data.",
+        "A fun web app that uses the Pokemon API to fetch data about Pokimane's live streams and viewer interactions, allowing users to battle each other using Pokimane's data.",
       imageUrl: "/images/pokemon.jpg",
       githubLink: "https://github.com/machikuku/FinalSE.git",
-      technologies: ["React", "Node.js", "API Integration"],
+      technologies: ["React", "Node.js", "CSS", "API Integration"],
     },
     {
-      title: "CCS-IT PORTAL",
+      title: "CCS-IT DEPARTMENT PORTAL",
       description:
-        "A comprehensive design system created for portfolio websites, featuring reusable components, color schemes, and typography guidelines.",
+        "The CCS-IT Department Portal used by faculty, students, alumni, " +
+        "and the broader community. It's designed to streamline access to resources, updates, " +
+        "and opportunities tailored to the needs of each group.",
       imageUrl: "/images/se.png?key=4ro4f",
       // No live link for this project
       githubLink: "https://github.com/machikuku/pokemon-api-battle.git",
       technologies: ["PHP", "CSS", "HTML", "JAVASCRIPT"],
     },
     {
-      title: "Better Bites",
+      title: "BETTER BITES",
       description:
         "Better Bites, a Flutter app, uses AI to scan and analyze packaged food ingredients, offering personalized health insights. Backed by reliable sources, it educates users on ingredient impacts, empowering informed dietary choices.",
       imageUrl: "/images/betterbites.jpg?key=hkx90",
-      githubLink: "hhttps://github.com/machikuku/Better_Bites.git",
-      technologies: ["Flutter", "Dart", "Python", "Flask", "AI", "SQLITE"],
+      githubLink: "https://github.com/machikuku/Better_Bites.git",
+      technologies: ["APK", "Flutter", "Dart", "Python", "Flask", "AI", "SQLITE"],
+    },
+    {
+      title: "RECYCLICK",
+      description:
+        "RecyClick is an innovative web application designed to facilitate the buying and selling of recyclable materials.",
+      imageUrl: "/images/reclick.png?key=hkx90",
+      githubLink: "https://github.com/aoivhean/recyclick.git",
+      technologies: ["Django", "PHP", "HTML", "CSS", "Javascript"],
+    },
+    {
+      title: "ECOWATT",
+      description:
+        "Eco Watt is a web application designed to help users estimate their electricity consumption and manage their energy usage more efficiently.",
+      imageUrl: "/images/eco.jpg?key=hkx90",
+      githubLink: "https://github.com/aoivhean/ecowatt.git",
+      technologies: ["PHP", "Machine Learning", "HTML", "CSS", "Javascript"],
     },
   ])
 
@@ -79,8 +97,7 @@ const Projects = () => {
 
   return (
     <div ref={sectionRef} className="min-h-screen bg-[#121416] py-32 px-4 sm:px-6 relative overflow-hidden">
-      {/* Enhanced Background */}
-      <BackgroundEffect variant="grid" intensity="medium" />
+      {/* Removed BackgroundEffect component */}
 
       {/* Background elements */}
       <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-teal-500/5 blur-3xl rounded-full" />
@@ -123,7 +140,7 @@ const Projects = () => {
             <div className="grid grid-cols-1 md:grid-cols-3">
               <div className="h-64 md:h-auto bg-[#1e2024] relative overflow-hidden">
                 {/* Directly placed image for blog */}
-                <img src="/images/blog.jpg" alt="Blog Image" className="object-cover w-full h-full" />
+                <img src="/images/ojt.png" alt="Blog Image" className="object-cover w-full h-full" />
               </div>
               <div className="p-6 md:p-8 md:col-span-2">
                 <div className="flex items-center gap-4 mb-3">
@@ -179,6 +196,8 @@ const Projects = () => {
                       src={
                         project.imageUrl ||
                         "/placeholder.svg?height=192&width=384&query=" + encodeURIComponent(project.title) ||
+                        "/placeholder.svg" ||
+                        "/placeholder.svg" ||
                         "/placeholder.svg" ||
                         "/placeholder.svg" ||
                         "/placeholder.svg"

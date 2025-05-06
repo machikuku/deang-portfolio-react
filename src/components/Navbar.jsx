@@ -5,15 +5,16 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Home, User, Briefcase, Mail, Award } from "lucide-react"
 
-const Navbar = ({ isScrolled }) => {
+const Navbar = () => {
   const [activeSection, setActiveSection] = useState("hero")
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   // Handle scroll to update active section and navbar style
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      const sections = ["hero", "about", "projects", "contact"]
+      const sections = ["hero", "about", "projects", "certificates", "contact"]
 
       // Find which section is currently in view
       for (const section of sections) {
@@ -26,6 +27,14 @@ const Navbar = ({ isScrolled }) => {
             break
           }
         }
+      }
+
+      // Set isScrolled based on scroll position
+      // Only apply the blur effect when we've scrolled past the hero section
+      const heroSection = document.getElementById("hero")
+      if (heroSection) {
+        const heroHeight = heroSection.offsetHeight
+        setScrolled(scrollPosition > 100) // Start transition earlier for smoother effect
       }
     }
 
@@ -52,19 +61,13 @@ const Navbar = ({ isScrolled }) => {
       {/* Main Navbar - Fixed at the top with increased height */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-          isScrolled ? "bg-black/90 backdrop-blur-md shadow-md shadow-black/10" : "bg-transparent"
+          scrolled ? "bg-[#121416]/80 backdrop-blur-sm" : "bg-transparent"
         }`}
-        style={{
-          // Apply smooth transition styles
-          backgroundColor: isScrolled ? "rgba(0, 0, 0, 0.9)" : "transparent",
-          backdropFilter: isScrolled ? "blur(12px)" : "none",
-          boxShadow: isScrolled ? "0 4px 6px -1px rgba(0, 0, 0, 0.1)" : "none",
-        }}
       >
         <div className="max-w-[1100px] mx-auto px-2 sm:px-5 lg:px-6">
           <div className="flex items-center justify-between h-15 sm:h-20">
             {/* Logo */}
-            <a href="#hero" onClick={() => setActiveSection("hero")} className="flex items-center">
+            <a href="https://deangmarkuportfolio.netlify.app" onClick={() => setActiveSection("hero")} className="flex items-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <img src="/images/myLogo.png" alt="Logo" className="h-12 w-auto" />
               </motion.div>
@@ -142,7 +145,7 @@ const Navbar = ({ isScrolled }) => {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`fixed inset-0 bg-black/95 backdrop-blur-md z-40 transition-all duration-300 md:hidden ${
+        className={`fixed inset-0 bg-transparent backdrop-blur-lg z-40 transition-all duration-300 md:hidden ${
           isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={toggleMobileMenu}

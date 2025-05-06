@@ -43,8 +43,9 @@ const App = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      const secondSectionTop = window.innerHeight * 0.8 // Reduced threshold for earlier navbar change
-      setIsScrolled(scrollPosition >= secondSectionTop)
+      const heroSection = document.getElementById("hero")
+      const heroHeight = heroSection ? heroSection.offsetHeight * 0.6 : window.innerHeight * 0.6
+      setIsScrolled(scrollPosition >= heroHeight)
     }
 
     window.addEventListener("scroll", handleScroll)

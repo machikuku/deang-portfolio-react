@@ -18,7 +18,7 @@ import {
   ChevronRight,
 } from "lucide-react"
 import TechStackItem from "./TechStackItem"
-import BackgroundEffect from "./BackgroundEffect"
+// Removed BackgroundEffect import
 
 // Import tech logos
 import ReactLogo from "./tech-logos/ReactLogo"
@@ -33,6 +33,7 @@ import PythonLogo from "./tech-logos/PythonLogo"
 import PHPLogo from "./tech-logos/PHPLogo"
 
 const About = () => {
+  // Rest of the component code remains the same...
   // Refs for scroll animations
   const introRef = useRef(null)
   const skillsRef = useRef(null)
@@ -59,19 +60,23 @@ const About = () => {
   const experiences = [
     {
       title: "Frontend Developer & System Analyst",
-      company: "AEONFLUX",
+      company: "AEONFLUX: CCS-IT Department Portal (Software Engineering Project)",
       period: "2022 - Present",
       type: "Full-time",
       description:
-        "Developed and maintained responsive web pages that caters the need of the IT Students and Alumnus of WMSU - CCS.",
+        "Develop CCS-IT Department Portal used by faculty, students, alumni, " +
+        "and the broader community. It's designed to streamline access to resources, updates, " +
+        "and opportunities tailored to the needs of each group. By serving these stakeholders, " +
+        "the portal enhances communication, fosters collaboration, and supports the growth of " + 
+        "everyone involved in the Department of Information Technology at Western Mindanao State University.",
     },
     {
       title: "Backend Developer",
-      company: "AEONFLUX",
+      company: "AEONFLUX: Better Bites (Capstone Project)",
       period: "2024 - Present",
       type: "Full-time",
       description:
-        "Created a AI to scan and analyze packaged food ingredients, offering personalized health insights. Backed by reliable sources, it educates users on ingredient impacts, empowering informed dietary choices. ",
+        "Integrated an AI to scan and analyze packaged food ingredients, offering personalized health insights. Backed by reliable sources, it educates users on ingredient impacts, empowering informed dietary choices. ",
     },
   ]
 
@@ -260,14 +265,14 @@ const About = () => {
 
   return (
     <div ref={sectionRef} className="min-h-screen bg-[#121416] pt-28 pb-20 px-4 sm:px-6 relative overflow-hidden">
-      {/* Enhanced Background */}
-      <BackgroundEffect variant="blobs" intensity="low" />
+      {/* Removed BackgroundEffect component */}
 
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-teal-500/5 blur-3xl rounded-full" />
       <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-teal-500/5 blur-3xl rounded-full" />
 
       <div className="container mx-auto max-w-5xl relative z-10">
+        {/* Rest of the component JSX remains the same... */}
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -551,10 +556,17 @@ const About = () => {
             <h4 className="text-xl font-semibold text-white mb-4">My Professional Aspirations</h4>
             <div className="space-y-4">
               <p className="text-gray-300 leading-relaxed">
-              My goal is to enhance my ability in web design and development, continuously improving my programming skills while sharpening my creative and design capabilities. I aspire to become a full-stack developer capable of creating innovative and useful systems and technologies that can make a real impact. Along the way, I want to motivate and inspire the younger generation, helping them see the potential of technology in transforming ideas into reality.
+                My goal is to enhance my ability in web design and development, continuously improving my programming
+                skills while sharpening my creative and design capabilities. I aspire to become a full-stack developer
+                capable of creating innovative and useful systems and technologies that can make a real impact. Along
+                the way, I want to motivate and inspire the younger generation, helping them see the potential of
+                technology in transforming ideas into reality.
               </p>
               <p className="text-gray-300 leading-relaxed">
-              In the coming years, I envision myself not only as a skilled developer but also as a mentor, guiding others to reach their full potential. I am passionate about using my expertise to develop systems that can solve real-world problems while pushing the boundaries of design and technology. My mission is to leave a lasting, positive influence on those I work with and inspire future innovators.
+                In the coming years, I envision myself not only as a skilled developer but also as a mentor, guiding
+                others to reach their full potential. I am passionate about using my expertise to develop systems that
+                can solve real-world problems while pushing the boundaries of design and technology. My mission is to
+                leave a lasting, positive influence on those I work with and inspire future innovators.
               </p>
               <div className="pt-4 flex flex-wrap gap-3">
                 {[

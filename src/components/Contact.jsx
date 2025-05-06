@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, Github, Linkedin, MessageCircle, Copy, Check, ExternalLink } from "lucide-react"
-import BackgroundEffect from "./BackgroundEffect"
+// Removed BackgroundEffect import
 
 const Contact = () => {
   // State for copy functionality
@@ -33,8 +33,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-[#121416] py-32 px-4 sm:px-6 relative overflow-hidden">
-      {/* Enhanced Background */}
-      <BackgroundEffect variant="blobs" intensity="low" />
+      {/* Removed BackgroundEffect component */}
 
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-teal-500/5 blur-3xl rounded-full" />
